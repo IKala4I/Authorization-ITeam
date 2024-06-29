@@ -3,6 +3,7 @@ import {Subject, switchMap, takeUntil} from 'rxjs';
 import {AuthService} from 'src/app/services/auth.service';
 import {UserService} from 'src/app/services/user.service';
 import {AssessmentListComponent} from 'src/app/dashboard/assessment-list/assessment-list.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'auth-dashboard',
@@ -19,7 +20,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   untilSubject$ = new Subject<void>();
 
-  constructor(private authService: AuthService, private userService: UserService) {
+  constructor(private authService: AuthService, private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
@@ -35,6 +36,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe(assessments => {
         this.userAssessments = assessments;
       });
+  }
+
+  showUsers() {
+    this.router.navigate(['/users']);
   }
 
   ngOnDestroy() {
