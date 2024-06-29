@@ -2,11 +2,14 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject, switchMap, takeUntil} from 'rxjs';
 import {AuthService} from 'src/app/services/auth.service';
 import {UserService} from 'src/app/services/user.service';
+import {AssessmentListComponent} from 'src/app/dashboard/assessment-list/assessment-list.component';
 
 @Component({
   selector: 'auth-dashboard',
   standalone: true,
-  imports: [],
+  imports: [
+    AssessmentListComponent
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -30,7 +33,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         takeUntil(this.untilSubject$)
       )
       .subscribe(assessments => {
-        console.log(assessments);
         this.userAssessments = assessments;
       });
   }

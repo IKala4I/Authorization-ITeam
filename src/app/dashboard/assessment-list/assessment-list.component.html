@@ -1,0 +1,5 @@
+@for (assessment of assessments; track assessment.id) {
+  <auth-assessment-item [assessment]="assessment"></auth-assessment-item>
+} @empty {
+  <p>There are no assessments</p>
+}
