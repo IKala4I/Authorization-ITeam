@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subject, switchMap, takeUntil} from 'rxjs';
-import {AuthService} from 'src/app/services/auth.service';
+import {Subject, takeUntil} from 'rxjs';
 import {UserService} from 'src/app/services/user.service';
 import {AssessmentListComponent} from 'src/app/dashboard/assessment-list/assessment-list.component';
 import {Router} from '@angular/router';
+import {RoleService} from 'src/app/services/role.service';
+import {ROLES} from 'src/app/constants/roles';
 
 @Component({
   selector: 'auth-dashboard',
@@ -15,22 +16,17 @@ import {Router} from '@angular/router';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  userDetails: any = null;
   userAssessments: any = null;
 
   untilSubject$ = new Subject<void>();
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private roleService: RoleService, private router: Router) {
   }
 
   ngOnInit() {
-    this.authService
-      .login('admin@deepersignals.com', 'password')
+    this.userService
+      .getUserAssessments()
       .pipe(
-        switchMap((userData) => {
-          this.userDetails = userData;
-          return this.userService.getUserAssessments();
-        }),
         takeUntil(this.untilSubject$)
       )
       .subscribe(assessments => {
@@ -42,9 +38,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate(['/users']);
   }
 
+  isAdmin() {
+    return this.roleService.hasRole(ROLES.ADMIN);
+  }
+
   ngOnDestroy() {
     this.untilSubject$.next();
     this.untilSubject$.complete();
   }
-
 }
