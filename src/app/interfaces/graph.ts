@@ -1,4 +1,9 @@
 export interface Graph {
-  data: { [key: string]: number },
+  data: {
+    agreeableness: number,
+    drive: number,
+    luck: number,
+    openness: number
+  },
   type: string
 }

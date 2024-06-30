@@ -23,9 +23,12 @@ export class AssessmentListComponent {
   constructor(private dialog: MatDialog) {
   }
 
-  showGraph(id: number) {
+  showGraph(id: number, name:string) {
     this.dialog.open(AssessmentItemGraphComponent, {
-      data: id
+      data: {
+        id,
+        assessmentName:name
+      }
     });
   }
 }

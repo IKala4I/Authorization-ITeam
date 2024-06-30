@@ -22,5 +22,5 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row class="row" *matRowDef="let assessment; columns: displayedColumns;" (click)="showGraph(assessment.id)"></tr>
+  <tr mat-row class="row" *matRowDef="let assessment; columns: displayedColumns;" (click)="showGraph(assessment.id, assessment.name)"></tr>
 </table>

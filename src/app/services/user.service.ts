@@ -4,7 +4,6 @@ import {API_URL} from 'src/app/constants/url';
 import {Assessment} from 'src/app/interfaces/assessment';
 import {Graph} from 'src/app/interfaces/graph';
 import {User} from 'src/app/interfaces/user';
-import {map} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

@@ -1,1 +1,18 @@
-<p>{{ graph.type }}</p>
+<h2 mat-dialog-title>{{ data.assessmentName }} Graph</h2>
+<mat-dialog-content>
+  <h3>Type: {{ graph.type }}</h3>
+  <ul>
+    <li>
+      Agreeableness: {{ graph.data.agreeableness }}
+    </li>
+    <li>
+      Drive: {{ graph.data.drive }}
+    </li>
+    <li>
+      Luck: {{ graph.data.luck }}
+    </li>
+    <li>
+      Openness: {{ graph.data.openness }}
+    </li>
+  </ul>
+</mat-dialog-content>
