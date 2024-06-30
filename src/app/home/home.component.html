@@ -1,10 +1,18 @@
 <div class="container">
-  <button mat-fab extended (click)="login('Admin')">
-    <mat-icon>perm_data_setting</mat-icon>
-    Enter as admin
+  <button class="button" mat-fab extended (click)="login('Admin')" [disabled]="isLoginClicked">
+    @if (isLoginClicked) {
+      <mat-spinner diameter="40"></mat-spinner>
+    } @else {
+      <mat-icon>perm_data_setting</mat-icon>
+      Login as admin
+    }
   </button>
-  <button mat-fab extended (click)="login('User')">
-    <mat-icon>person_outline</mat-icon>
-    Enter as user
+  <button class="button" mat-fab extended (click)="login('User')" [disabled]="isLoginClicked">
+    @if (isLoginClicked) {
+      <mat-spinner diameter="40"></mat-spinner>
+    } @else {
+      <mat-icon>person_outline</mat-icon>
+      Login as user
+    }
   </button>
 </div>

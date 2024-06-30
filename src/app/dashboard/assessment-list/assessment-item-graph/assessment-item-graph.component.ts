@@ -3,13 +3,15 @@ import {MAT_DIALOG_DATA, MatDialogContent, MatDialogTitle} from '@angular/materi
 import {UserService} from 'src/app/services/user.service';
 import {Subject, takeUntil} from 'rxjs';
 import {Graph} from 'src/app/interfaces/graph';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'auth-assessment-item-graph',
   standalone: true,
   imports: [
     MatDialogTitle,
-    MatDialogContent
+    MatDialogContent,
+    MatProgressSpinner
   ],
   templateUrl: './assessment-item-graph.component.html',
   styleUrl: './assessment-item-graph.component.scss'
@@ -17,6 +19,7 @@ import {Graph} from 'src/app/interfaces/graph';
 export class AssessmentItemGraphComponent implements OnInit, OnDestroy {
 
   graph: Graph;
+  isGraphUndefined = false;
   untilSubject$ = new Subject<void>();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
@@ -31,7 +34,10 @@ export class AssessmentItemGraphComponent implements OnInit, OnDestroy {
         takeUntil(this.untilSubject$)
       )
       .subscribe(graphData => {
-        this.graph = graphData;
+        if (graphData)
+          this.graph = graphData;
+        else
+          this.isGraphUndefined = true;
       });
   }
 

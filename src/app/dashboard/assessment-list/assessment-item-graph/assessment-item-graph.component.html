@@ -1,18 +1,26 @@
 <h2 mat-dialog-title>{{ data.assessmentName }} Graph</h2>
 <mat-dialog-content>
-  <h3>Type: {{ graph.type }}</h3>
-  <ul>
-    <li>
-      Agreeableness: {{ graph.data.agreeableness }}
-    </li>
-    <li>
-      Drive: {{ graph.data.drive }}
-    </li>
-    <li>
-      Luck: {{ graph.data.luck }}
-    </li>
-    <li>
-      Openness: {{ graph.data.openness }}
-    </li>
-  </ul>
+  @if (graph) {
+    <h3>Type: {{ graph.type }}</h3>
+    <ul>
+      <li>
+        Agreeableness: {{ graph.data.agreeableness }}
+      </li>
+      <li>
+        Drive: {{ graph.data.drive }}
+      </li>
+      <li>
+        Luck: {{ graph.data.luck }}
+      </li>
+      <li>
+        Openness: {{ graph.data.openness }}
+      </li>
+    </ul>
+  } @else if (!isGraphUndefined && !graph) {
+    <div class="spinner-wrapper">
+      <mat-spinner></mat-spinner>
+    </div>
+  } @else if (isGraphUndefined) {
+    <h3>Graph is undefined</h3>
+  }
 </mat-dialog-content>
