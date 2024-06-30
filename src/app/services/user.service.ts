@@ -23,10 +23,6 @@ export class UserService {
   }
 
   getUsers() {
-    let id = 0;
     return this.http.get<User[]>(`${API_URL}/users`)
-      .pipe(
-        map(users => users.map(user => ({...user, id: id++})))
-      );
   }
 }

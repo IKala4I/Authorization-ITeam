@@ -6,7 +6,3 @@ export interface User {
   education: string,
   dateOfBirth: string,
 }
-
-export interface UserWithId extends User {
-  id: number;
-}
