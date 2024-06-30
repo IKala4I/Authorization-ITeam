@@ -2,15 +2,24 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject, takeUntil} from 'rxjs';
 import {UserService} from 'src/app/services/user.service';
 import {AssessmentListComponent} from 'src/app/dashboard/assessment-list/assessment-list.component';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {RoleService} from 'src/app/services/role.service';
 import {ROLES} from 'src/app/constants/roles';
+import {MatTab, MatTabGroup, MatTabLink} from '@angular/material/tabs';
+import {UsersComponent} from 'src/app/dashboard/users/users.component';
+import {MatButton, MatFabButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'auth-dashboard',
   standalone: true,
   imports: [
-    AssessmentListComponent
+    AssessmentListComponent,
+    MatTabGroup,
+    MatTab,
+    UsersComponent,
+    MatFabButton,
+    MatIcon
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
@@ -34,12 +43,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
   }
 
-  showUsers() {
-    this.router.navigate(['/users']);
-  }
-
   isAdmin() {
     return this.roleService.hasRole(ROLES.ADMIN);
+  }
+
+  toLogin() {
+    this.router.navigate(['']);
   }
 
   ngOnDestroy() {

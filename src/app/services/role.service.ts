@@ -1,20 +1,24 @@
 import {Injectable} from '@angular/core';
+import {LocalStorageService} from 'src/app/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoleService {
 
-  private userRole: string;
-
-  constructor() {
+  constructor(private localStorageService: LocalStorageService) {
   }
 
-  hasRole(role: string): boolean {
-    return this.userRole === role;
+  hasRole(role: string | string[]): boolean {
+    const currentRole = this.localStorageService.getItem('role');
+
+    if(Array.isArray(role))
+      return currentRole ? role.includes(currentRole) : false;
+
+    return currentRole === role;
   }
 
   setUserRole(role: string): void {
-    this.userRole = role;
+    this.localStorageService.setItem('role', role)
   }
 }

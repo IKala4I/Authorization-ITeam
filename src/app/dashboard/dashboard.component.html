@@ -1,9 +1,20 @@
 <div class="container">
-  @if (isAdmin()) {
-    <h2 (click)="showUsers()">Admin panel</h2>
-  }
-  <div class="assessment-list">
-    <h2>Assessments</h2>
-    <auth-assessment-list [assessments]="userAssessments"></auth-assessment-list>
+  <div class="tabs">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+      <mat-tab label="Assessments">
+        <auth-assessment-list [assessments]="userAssessments"></auth-assessment-list>
+      </mat-tab>
+      @if (isAdmin()) {
+        <mat-tab label="Users">
+          <auth-users></auth-users>
+        </mat-tab>
+      }
+      <mat-tab label="Back To Login">
+        <button mat-fab extended (click)="toLogin()">
+          <mat-icon>home</mat-icon>
+          Back To Login
+        </button>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>
