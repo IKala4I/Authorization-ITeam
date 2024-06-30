@@ -2,7 +2,7 @@
   <ng-container matColumnDef="image">
     <th mat-header-cell *matHeaderCellDef>Image</th>
     <td mat-cell *matCellDef="let assessment">
-      <img [src]="assessment.image_url" alt="image">
+      <img class="image" [src]="assessment.image_url" alt="image">
     </td>
   </ng-container>
 
@@ -22,5 +22,5 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let assessment; columns: displayedColumns;" (click)="showGraph(assessment.id)"></tr>
+  <tr mat-row class="row" *matRowDef="let assessment; columns: displayedColumns;" (click)="showGraph(assessment.id)"></tr>
 </table>
