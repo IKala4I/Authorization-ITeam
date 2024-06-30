@@ -2,12 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject, takeUntil} from 'rxjs';
 import {UserService} from 'src/app/services/user.service';
 import {AssessmentListComponent} from 'src/app/dashboard/assessment-list/assessment-list.component';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {RoleService} from 'src/app/services/role.service';
 import {ROLES} from 'src/app/constants/roles';
-import {MatTab, MatTabGroup, MatTabLink} from '@angular/material/tabs';
+import {MatTab, MatTabGroup} from '@angular/material/tabs';
 import {UsersComponent} from 'src/app/dashboard/users/users.component';
-import {MatButton, MatFabButton} from '@angular/material/button';
+import {MatFabButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 
 @Component({
