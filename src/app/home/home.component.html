@@ -1,2 +1,10 @@
-<button (click)="login('Admin')">Enter as admin</button>
-<button (click)="login('User')">Enter as user</button>
+<div class="container">
+  <button mat-fab extended (click)="login('Admin')">
+    <mat-icon>perm_data_setting</mat-icon>
+    Enter as admin
+  </button>
+  <button mat-fab extended (click)="login('User')">
+    <mat-icon>person_outline</mat-icon>
+    Enter as user
+  </button>
+</div>

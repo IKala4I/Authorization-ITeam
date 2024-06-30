@@ -3,11 +3,16 @@ import {Router} from '@angular/router';
 import {AuthService} from 'src/app/services/auth.service';
 import {Subject, takeUntil} from 'rxjs';
 import {ROLES} from 'src/app/constants/roles';
+import {MatFabButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'auth-home',
   standalone: true,
-  imports: [],
+  imports: [
+    MatFabButton,
+    MatIcon
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
